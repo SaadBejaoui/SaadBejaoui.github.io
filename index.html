@@ -1,2 +1,426 @@
-<h1>Saadeddine Bejaoui</h1>
-<p>Site en construction</p>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saadeddine Bejaoui — Ingénieur & Mathématicien Appliqué</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  /* BNP Paribas palette */
+  --green:      #00965E;
+  --green-dk:   #006A3E;
+  --green-lt:   #00B36B;
+  --green-dim:  rgba(0,150,94,.1);
+  --green-line: rgba(0,150,94,.25);
+
+  --bg:         #F2F5F3;
+  --bg2:        #E8EDE9;
+  --bg3:        #DDE4DE;
+  --surface:    #FFFFFF;
+  --line:       rgba(0,0,0,.07);
+  --line2:      rgba(0,0,0,.13);
+
+  --text:       #0D1F17;
+  --muted:      #5A6B62;
+  --dim:        #A8B9B0;
+
+  --display:    'Playfair Display', Georgia, serif;
+  --sans:       'DM Sans', system-ui, sans-serif;
+  --mono:       'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .75s cubic-bezier(.22,1,.36,1), transform .75s cubic-bezier(.22,1,.36,1); }
+.reveal.visible { opacity: 1; transform: none; }
+.d1{transition-delay:.09s} .d2{transition-delay:.19s} .d3{transition-delay:.30s} .d4{transition-delay:.41s}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 24px 68px;
+  transition: background .4s, border-bottom .4s, padding .4s;
+  border-bottom: 1px solid transparent;
+}
+nav.scrolled {
+  background: rgba(242,245,243,.95);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--line);
+  padding: 16px 68px;
+}
+.nav-logo {
+  font-family: var(--display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--green-dk);
+  text-decoration: none;
+  letter-spacing: .01em;
+}
+.nav-links { display: flex; gap: 38px; list-style: none; }
+.nav-links a {
+  font-family: var(--sans);
+  font-size: .82rem;
+  font-weight: 400;
+  color: var(--muted);
+  text-decoration: none;
+  letter-spacing: .03em;
+  transition: color .25s;
+  position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+  height: 1.5px; background: var(--green);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .3s cubic-bezier(.22,1,.36,1);
+}
+.nav-links a:hover, .nav-links a.active { color: var(--green-dk); }
+.nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+
+/* HERO */
+#hero {
+  min-height: 100vh;
+  display: grid; grid-template-rows: 1fr auto;
+  padding: 0 68px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(160deg, #FFFFFF 0%, var(--bg) 60%);
+}
+.hero-inner {
+  display: flex; flex-direction: column; justify-content: center;
+  padding-top: 110px; padding-bottom: 80px; max-width: 860px;
+}
+.hero-eyebrow {
+  font-family: var(--mono); font-size: .68rem; color: var(--green);
+  letter-spacing: .14em; margin-bottom: 32px; text-transform: uppercase;
+  display: flex; align-items: center; gap: 14px;
+}
+.hero-eyebrow::before { content:''; display:block; width:28px; height:1.5px; background:var(--green); }
+
+h1.hero-name {
+  font-family: var(--display);
+  font-size: clamp(3.4rem, 8vw, 8rem);
+  font-weight: 500;
+  line-height: .95;
+  letter-spacing: -.02em;
+  color: var(--text);
+  margin-bottom: 32px;
+}
+h1.hero-name em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--green);
+  display: block;
+}
+
+.hero-desc {
+  font-family: var(--sans);
+  font-size: 1.05rem;
+  font-weight: 300;
+  color: var(--muted);
+  max-width: 500px;
+  line-height: 1.85;
+  margin-bottom: 48px;
+}
+.hero-desc strong { color: var(--text); font-weight: 500; }
+
+.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+.btn {
+  display: inline-block; font-family: var(--sans);
+  font-size: .8rem; font-weight: 500; letter-spacing: .04em;
+  text-decoration: none; padding: 13px 30px;
+  border: 1.5px solid var(--line2); color: var(--text);
+  background: var(--surface);
+  transition: background .22s, border-color .22s, color .22s, box-shadow .22s;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,.06);
+}
+.btn:hover { background: var(--bg2); border-color: var(--line2); }
+.btn-fill { background: var(--green); border-color: var(--green); color: #fff; box-shadow: 0 2px 12px rgba(0,150,94,.25); }
+.btn-fill:hover { background: var(--green-dk); border-color: var(--green-dk); box-shadow: 0 4px 18px rgba(0,150,94,.3); }
+
+.hero-meta { display: grid; grid-template-columns: repeat(3,1fr); border-top: 1px solid var(--line); }
+.hero-stat { padding: 30px 0; border-right: 1px solid var(--line); }
+.hero-stat:last-child { border-right: none; }
+.stat-val {
+  font-family: var(--display);
+  font-size: 2.4rem; font-weight: 500;
+  color: var(--green); line-height: 1; margin-bottom: 6px;
+}
+.stat-label { font-family: var(--mono); font-size: .62rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
+
+/* SECTION */
+.section-wrap { max-width: 1180px; margin: 0 auto; padding: 104px 68px; border-bottom: 1px solid var(--line); }
+.section-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 68px; }
+.section-num { font-family: var(--mono); font-size: .65rem; color: var(--dim); letter-spacing: .12em; }
+h2.section-title {
+  font-family: var(--display);
+  font-size: clamp(1.9rem, 3.2vw, 2.8rem);
+  font-weight: 500;
+  color: var(--text);
+  letter-spacing: -.015em;
+  line-height: 1.1;
+}
+h2.section-title em { font-style: italic; font-weight: 400; color: var(--green); }
+
+/* ABOUT */
+.about-cols { display: grid; grid-template-columns: 5fr 4fr; gap: 80px; align-items: start; }
+.about-body p { color: var(--muted); font-size: .97rem; line-height: 1.9; margin-bottom: 18px; font-weight: 300; }
+.about-body p strong { color: var(--text); font-weight: 500; }
+.about-contact { margin-top: 38px; }
+.c-line { display: flex; align-items: center; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+.c-line:first-child { border-top: 1px solid var(--line); }
+.c-key { font-family: var(--mono); font-size: .63rem; color: var(--dim); letter-spacing: .09em; width: 82px; flex-shrink: 0; }
+.c-val { font-size: .9rem; color: var(--text); font-weight: 300; }
+.c-val a { color: var(--green); text-decoration: none; }
+.c-val a:hover { text-decoration: underline; }
+
+/* TIMELINE */
+.tl-item { padding: 0 0 28px; }
+.tl-item + .tl-item { border-top: 1px solid var(--line); padding-top: 26px; }
+.tl-year { font-family: var(--mono); font-size: .64rem; color: var(--green); letter-spacing: .1em; margin-bottom: 7px; text-transform: uppercase; }
+.tl-name { font-family: var(--display); font-size: 1.05rem; font-weight: 500; color: var(--text); margin-bottom: 5px; }
+.tl-detail { font-size: .84rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
+.badge {
+  display: inline-block; margin-top: 9px; padding: 3px 12px;
+  background: var(--green-dim); border: 1px solid var(--green-line);
+  font-family: var(--mono); font-size: .6rem; color: var(--green-dk); letter-spacing: .09em;
+  border-radius: 2px;
+}
+
+/* SKILLS */
+.skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--line); }
+.skill-cell {
+  background: var(--surface); padding: 34px 30px;
+  transition: background .25s, box-shadow .25s;
+  border-top: 3px solid transparent;
+}
+.skill-cell:hover { background: var(--bg); border-top-color: var(--green); }
+.skill-cat { font-family: var(--mono); font-size: .62rem; font-weight: 400; color: var(--green); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 12px; }
+.skill-cell h3 { font-family: var(--display); font-size: 1.1rem; font-weight: 500; color: var(--text); margin-bottom: 20px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag { font-family: var(--sans); font-size: .72rem; font-weight: 300; color: var(--muted); padding: 4px 11px; border: 1px solid var(--line2); background: var(--bg); letter-spacing: .02em; transition: color .2s, background .2s, border-color .2s; }
+.skill-cell:hover .tag { color: var(--text); background: var(--surface); border-color: var(--green-line); }
+
+/* PROJECTS */
+.filter-row { display: flex; flex-wrap: wrap; margin-bottom: 48px; border-bottom: 1.5px solid var(--line); }
+.f-btn {
+  font-family: var(--sans); font-size: .78rem; font-weight: 400;
+  color: var(--muted); background: none; border: none;
+  padding: 11px 20px; cursor: pointer;
+  border-bottom: 2px solid transparent; margin-bottom: -1.5px;
+  transition: color .2s;
+}
+.f-btn:hover { color: var(--text); }
+.f-btn.active { color: var(--green-dk); font-weight: 500; border-bottom-color: var(--green); }
+
+.proj-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--line); }
+.proj-card {
+  background: var(--surface); padding: 34px 30px;
+  display: flex; flex-direction: column;
+  transition: background .25s;
+  border-top: 3px solid transparent;
+}
+.proj-card:hover { background: var(--bg); border-top-color: var(--green); }
+.proj-card.hidden { display: none; }
+.proj-yr { font-family: var(--mono); font-size: .62rem; color: var(--green); letter-spacing: .08em; margin-bottom: 13px; }
+.proj-card h3 { font-family: var(--display); font-size: 1.08rem; font-weight: 500; color: var(--text); line-height: 1.35; margin-bottom: 14px; }
+.proj-card p { font-size: .84rem; font-weight: 300; color: var(--muted); line-height: 1.78; margin-bottom: 26px; flex: 1; }
+.proj-links { display: flex; gap: 16px; margin-top: auto; }
+.proj-link {
+  font-family: var(--sans); font-size: .75rem; font-weight: 500;
+  color: var(--muted); text-decoration: none;
+  letter-spacing: .04em; display: flex; align-items: center; gap: 6px;
+  transition: color .2s;
+}
+.proj-link:hover { color: var(--green-dk); }
+.proj-link svg { width: 12px; height: 12px; stroke: currentColor; fill: none; }
+
+/* CONTACT */
+.contact-table { width: 100%; border-collapse: collapse; margin-top: 44px; max-width: 600px; }
+.contact-table tr { border-bottom: 1px solid var(--line); }
+.contact-table tr:first-child { border-top: 1px solid var(--line); }
+.contact-table td { padding: 18px 6px; }
+.contact-table td:first-child { font-family: var(--mono); font-size: .63rem; color: var(--dim); letter-spacing: .09em; width: 120px; vertical-align: middle; }
+.contact-table td:last-child { font-size: .92rem; font-weight: 300; color: var(--text); }
+.contact-table a { color: var(--green-dk); text-decoration: none; }
+.contact-table a:hover { text-decoration: underline; }
+.contact-intro { font-family: var(--display); font-size: 1.15rem; font-style: italic; font-weight: 400; color: var(--muted); max-width: 500px; line-height: 1.7; }
+
+/* FOOTER */
+footer {
+  max-width: 1180px; margin: 0 auto;
+  padding: 34px 68px; display: flex; justify-content: space-between; align-items: center;
+}
+.f-copy { font-family: var(--mono); font-size: .63rem; color: var(--dim); letter-spacing: .07em; }
+.f-copy span { color: var(--muted); }
+.f-logo { font-family: var(--display); font-size: .95rem; font-weight: 500; color: var(--green-dk); }
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  nav, nav.scrolled { padding: 18px 28px; }
+  #hero { padding: 0 28px; }
+  .section-wrap { padding: 76px 28px; }
+  .about-cols { grid-template-columns: 1fr; gap: 52px; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .proj-grid { grid-template-columns: 1fr 1fr; }
+  footer { padding: 28px; }
+}
+@media (max-width: 600px) {
+  .nav-links { display: none; }
+  .skills-grid, .proj-grid { grid-template-columns: 1fr; }
+  h1.hero-name { font-size: 3rem; }
+  .hero-meta { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#hero" class="nav-logo">Saadeddine Bejaoui</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow reveal">Portfolio · Ingénieur</div>
+    <h1 class="hero-name reveal d1">
+      Saadeddine
+      <em>Bejaoui</em>
+    </h1>
+    <p class="hero-desc reveal d2">
+      Ingénieur en formation · Double diplômation <strong>ENIT – ENSIIE</strong><br>
+      Spécialité <strong>Mathématiques Appliquées</strong> —
+      modélisation stochastique, finance quantitative et apprentissage automatique.
+    </p>
+    <div class="hero-actions reveal d3">
+      <a href="#projects" class="btn btn-fill">Voir les projets</a>
+      <a href="rapports/CV_Saadeddine_Bejaoui.pdf" class="btn" download>Télécharger CV</a>
+      <a href="#contact" class="btn">Contact</a>
+    </div>
+  </div>
+  <div class="hero-meta reveal d4">
+    <div class="hero-stat"><div class="stat-val">7+</div><div class="stat-label">Projets académiques</div></div>
+    <div class="hero-stat"><div class="stat-val">3</div><div class="stat-label">Domaines d'expertise</div></div>
+    <div class="hero-stat"><div class="stat-val">C1</div><div class="stat-label">Anglais certifié</div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div class="section-wrap" id="about">
+  <div class="section-head reveal">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Formation &amp; <em>Parcours</em></h2>
+  </div>
+  <div class="about-cols">
+    <div class="about-body reveal d1">
+      <p>Ingénieur en formation à l'<strong>École Nationale des Ingénieurs de Tunis (ENIT)</strong>, actuellement en double diplômation avec l'<strong>ENSIIE (Paris)</strong>, au niveau M1 Mathématiques Appliquées.</p>
+      <p>Mon travail se situe à l'intersection des mathématiques stochastiques, de la <strong>finance quantitative</strong> et du <strong>machine learning</strong>. Je m'intéresse particulièrement à la calibration de modèles de volatilité et aux méthodes bayésiennes computationnelles.</p>
+      <p>Titulaire d'un baccalauréat obtenu avec <strong>mention Très Bien</strong>, j'ai suivi deux années de classes préparatoires MP à l'IPEIT avant d'intégrer le cycle ingénieur MIndS à l'ENIT.</p>
+      <div class="about-contact">
+        <div class="c-line"><span class="c-key">email</span><span class="c-val"><a href="mailto:bejaouisaadeddine18@gmail.com">bejaouisaadeddine18@gmail.com</a></span></div>
+        <div class="c-line"><span class="c-key">téléphone</span><span class="c-val">+33 07 51 16 93 35</span></div>
+        <div class="c-line"><span class="c-key">location</span><span class="c-val">Paris, France</span></div>
+        <div class="c-line"><span class="c-key">linkedin</span><span class="c-val"><a href="https://linkedin.com/in/saadeddine-bejaoui" target="_blank">saadeddine-bejaoui</a></span></div>
+      </div>
+    </div>
+    <div class="reveal d2">
+      <div class="tl-item"><div class="tl-year">2025 – 2026</div><div class="tl-name">Double Diplômation ENIT – ENSIIE</div><div class="tl-detail">M1 Mathématiques Appliquées · Paris</div><span class="badge">En cours</span></div>
+      <div class="tl-item"><div class="tl-year">2024 – 2025</div><div class="tl-name">Cycle Ingénieur — ENIT</div><div class="tl-detail">Spécialité MIndS — Modélisation pour l'Industrie et les Services · Tunis</div></div>
+      <div class="tl-item"><div class="tl-year">2022 – 2024</div><div class="tl-name">Classes Préparatoires MP</div><div class="tl-detail">IPEIT · Tunis</div></div>
+      <div class="tl-item"><div class="tl-year">2022</div><div class="tl-name">Baccalauréat</div><div class="tl-detail">Tunisie</div><span class="badge">Mention Très Bien</span></div>
+      <div class="tl-item"><div class="tl-year">Été 2024</div><div class="tl-name">Stage ouvrier — STEG</div><div class="tl-detail">Service Juridique & Assurances · 1 mois · Tunis</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div class="section-wrap" id="skills">
+  <div class="section-head reveal"><span class="section-num">03</span><h2 class="section-title">Compétences &amp; <em>Outils</em></h2></div>
+  <div class="skills-grid">
+    <div class="skill-cell reveal d1"><div class="skill-cat">Mathématiques</div><h3>Mathématiques Appliquées</h3><div class="tags"><span class="tag">Modélisation stochastique</span><span class="tag">Probabilités</span><span class="tag">Inférence bayésienne</span><span class="tag">MCMC</span><span class="tag">Optimisation</span><span class="tag">Éléments finis</span><span class="tag">Traitement du signal</span><span class="tag">Statistiques</span></div></div>
+    <div class="skill-cell reveal d2"><div class="skill-cat">Finance</div><h3>Finance Quantitative</h3><div class="tags"><span class="tag">Modèles de volatilité</span><span class="tag">Calibration d'options</span><span class="tag">Processus OU</span><span class="tag">SPX / VIX</span><span class="tag">Pricing</span></div></div>
+    <div class="skill-cell reveal d3"><div class="skill-cat">Data & ML</div><h3>Machine Learning</h3><div class="tags"><span class="tag">Modélisation prédictive</span><span class="tag">Régression</span><span class="tag">Classification</span><span class="tag">Analyse de données</span></div></div>
+    <div class="skill-cell reveal d1"><div class="skill-cat">Programmation</div><h3>Langages</h3><div class="tags"><span class="tag">Python</span><span class="tag">R</span><span class="tag">C</span><span class="tag">C++</span><span class="tag">Java</span></div></div>
+    <div class="skill-cell reveal d2"><div class="skill-cat">Langues</div><h3>Communication</h3><div class="tags"><span class="tag">Arabe — Natif</span><span class="tag">Français — Avancé</span><span class="tag">Anglais — C1 certifié</span><span class="tag">Allemand — A1</span></div></div>
+    <div class="skill-cell reveal d3"><div class="skill-cat">Recherche</div><h3>Méthodes</h3><div class="tags"><span class="tag">Simulation numérique</span><span class="tag">Algorithmes</span><span class="tag">Rédaction scientifique</span><span class="tag">Modélisation</span></div></div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="section-wrap" id="projects">
+  <div class="section-head reveal"><span class="section-num">04</span><h2 class="section-title">Projets <em>Académiques</em></h2></div>
+  <div class="filter-row reveal d1">
+    <button class="f-btn active" data-f="all">Tous</button>
+    <button class="f-btn" data-f="proba">Probabilités & Stats</button>
+    <button class="f-btn" data-f="finance">Finance Quantitative</button>
+    <button class="f-btn" data-f="ml">ML & Optimisation</button>
+    <button class="f-btn" data-f="signal">Signal & Systèmes</button>
+  </div>
+  <div class="proj-grid">
+    <div class="proj-card reveal d1" data-cat="finance"><div class="proj-yr">2026 · Finance Quantitative · En cours</div><h3>Modèle Quintic OU — Calibration jointe SPX/VIX</h3><p>Calibration jointe des smiles de volatilité SPX et VIX via le modèle Quintic Ornstein-Uhlenbeck. Étude de la structure de corrélation et implémentation numérique.</p><div class="proj-links"><a href="#" class="proj-link"><svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>Rapport</a><a href="#" class="proj-link"><svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/></svg>Code</a></div></div>
+    <div class="proj-card reveal d2" data-cat="proba"><div class="proj-yr">2024–2025 · Statistiques Bayésiennes</div><h3>Prédiction Bayésienne du Prix d'une Cryptomonnaie — MCMC</h3><p>Inférence bayésienne et échantillonnage MCMC par l'algorithme de Metropolis-Hastings pour la modélisation et prédiction de prix de cryptomonnaies.</p><div class="proj-links"><a href="#" class="proj-link"><svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>Rapport</a><a href="#" class="proj-link"><svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/></svg>Code</a></div></div>
+    <div class="proj-card reveal d3" data-cat="proba"><div class="proj-yr">2024–2025 · Probabilités</div><h3>Aspects Probabilistes du Gambling</h3><p>Étude mathématique rigoureuse des propriétés probabilistes et des lois gouvernant les jeux de hasard. Analyse des stratégies optimales et espérances.</p><div class="proj-links"><a href="#" class="proj-link"><svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>Rapport</a></div></div>
+    <div class="proj-card reveal d1" data-cat="signal"><div class="proj-yr">2024–2025 · Traitement du Signal</div><h3>Compression Audio par Codage en Sous-Bandes</h3><p>Chaîne complète de compression/décompression audio : filtrage RIF à phase linéaire, décimation, quantification, interpolation et synthèse. Score STOI = 0,895.</p><div class="proj-links"><a href="#" class="proj-link"><svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>Rapport</a><a href="#" class="proj-link"><svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/></svg>Code</a></div></div>
+    <div class="proj-card reveal d2" data-cat="ml"><div class="proj-yr">2025–2026 · Machine Learning</div><h3>Prédiction des Notes d'Examens par Machine Learning</h3><p>Développement d'un modèle ML pour prédire les résultats académiques à partir des caractéristiques individuelles et des habitudes d'apprentissage des étudiants.</p><div class="proj-links"><a href="#" class="proj-link"><svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>Rapport</a><a href="#" class="proj-link"><svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/></svg>Code</a></div></div>
+    <div class="proj-card reveal d3" data-cat="ml"><div class="proj-yr">2025–2026 · Optimisation Numérique</div><h3>Optimisation — Éléments Finis &amp; Structures de Tenségrité</h3><p>Résolution numérique de problèmes d'optimisation sans contraintes, avec contraintes d'inégalité, et optimisation de structures de tenségrité en mécanique.</p><div class="proj-links"><a href="#" class="proj-link"><svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>Rapport</a><a href="#" class="proj-link"><svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/></svg>Code</a></div></div>
+    <div class="proj-card reveal d1" data-cat="signal"><div class="proj-yr">2024–2025 · Développement</div><h3>Gestion des Réservations de Vols</h3><p>Application de gestion de réservations de vols avec interface graphique complète. Conception et implémentation d'un système de réservation fonctionnel.</p><div class="proj-links"><a href="#" class="proj-link"><svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/></svg>Code</a></div></div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="section-wrap" id="contact">
+  <div class="section-head reveal"><span class="section-num">05</span><h2 class="section-title">Contact &amp; <em>Informations</em></h2></div>
+  <div class="reveal d1">
+    <p class="contact-intro">Disponible pour des opportunités en finance quantitative, recherche académique ou stage en mathématiques appliquées.</p>
+    <table class="contact-table">
+      <tr><td>email</td><td><a href="mailto:bejaouisaadeddine18@gmail.com">bejaouisaadeddine18@gmail.com</a></td></tr>
+      <tr><td>téléphone</td><td>+33 07 51 16 93 35</td></tr>
+      <tr><td>linkedin</td><td><a href="https://linkedin.com/in/saadeddine-bejaoui" target="_blank">linkedin.com/in/saadeddine-bejaoui</a></td></tr>
+      <tr><td>location</td><td>Paris, France</td></tr>
+      <tr><td>cv</td><td><a href="rapports/CV_Saadeddine_Bejaoui.pdf" download>Télécharger le CV (PDF) ↓</a></td></tr>
+    </table>
+  </div>
+</div>
+
+<footer>
+  <div class="f-logo">SB</div>
+  <div class="f-copy">© 2026 <span>Saadeddine Bejaoui</span> — saadeddine-bejaoui.github.io</div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+  let cur = '';
+  document.querySelectorAll('[id]').forEach(s => { if (window.scrollY >= s.offsetTop - 220) cur = s.id; });
+  document.querySelectorAll('.nav-links a').forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + cur));
+});
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: .06 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+document.querySelectorAll('.f-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.f;
+    document.querySelectorAll('.proj-card').forEach(c => c.classList.toggle('hidden', f !== 'all' && c.dataset.cat !== f));
+  });
+});
+</script>
+</body>
+</html>
