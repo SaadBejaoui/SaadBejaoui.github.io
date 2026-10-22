@@ -1,490 +1,694 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Saadeddine Bejaoui — Ingénieur & Mathématicien Appliqué</title>
+<title>Saadeddine Bejaoui — Quantitative Finance</title>
+<meta name="description" content="MSc Quantitative Finance, ENSIIE / Université Paris-Saclay. Derivatives pricing, volatility modelling, computational statistics. Seeking a six-month final-year internship, 2027.">
+<meta name="author" content="Saadeddine Bejaoui">
+<meta property="og:title" content="Saadeddine Bejaoui — Quantitative Finance">
+<meta property="og:description" content="MSc Quantitative Finance, ENSIIE / Paris-Saclay. Derivatives pricing, volatility modelling, computational statistics.">
+<meta property="og:type" content="profile">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%231c3d5a'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='52' fill='%23f4f1ea' text-anchor='middle'%3ESB%3C/text%3E%3C/svg%3E">
 <style>
-:root {
-  /* BNP Paribas palette */
-  --green:      #00965E;
-  --green-dk:   #006A3E;
-  --green-lt:   #00B36B;
-  --green-dim:  rgba(0,150,94,.1);
-  --green-line: rgba(0,150,94,.25);
+/* ─────────────────────────────────────────────────────────────
+   Saadeddine Bejaoui — portfolio quant
+   Registre : sobre et dense, type recherche. Palette neutre
+   volontairement : le site est lu par des banques comme par des
+   fonds, donc aucune couleur maison d'un employeur potentiel.
+   ───────────────────────────────────────────────────────────── */
+:root{
+  --ink:#16202b;
+  --ink-soft:#44566b;
+  --ink-faint:#7d8c9c;
+  --paper:#fbfaf7;
+  --paper-2:#f4f2ec;
+  --line:#e0dcd2;
+  --accent:#1c3d5a;
+  --accent-soft:#2f6690;
+  --accent-wash:rgba(28,61,90,.06);
+  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --serif:'Spectral',Georgia,serif;
+  --sans:'Inter',system-ui,-apple-system,sans-serif;
+  --maxw:1080px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --paper-blur:rgba(251,250,247,.88);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#e8e6e1; --ink-soft:#a8b4c0; --ink-faint:#71808f;
+    --paper:#11161c; --paper-2:#171e26; --line:#273240;
+    --accent:#8fb8d8; --accent-soft:#6d9cc0; --accent-wash:rgba(143,184,216,.09);
+    --paper-blur:rgba(17,22,28,.88);
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#e8e6e1; --ink-soft:#a8b4c0; --ink-faint:#71808f;
+  --paper:#11161c; --paper-2:#171e26; --line:#273240;
+  --accent:#8fb8d8; --accent-soft:#6d9cc0; --accent-wash:rgba(143,184,216,.09);
+  --paper-blur:rgba(17,22,28,.88);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-weight:300; font-size:16px; line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+@media(max-width:640px){.wrap{padding:0 16px}}
 
-  --bg:         #F2F5F3;
-  --bg2:        #E8EDE9;
-  --bg3:        #DDE4DE;
-  --surface:    #FFFFFF;
-  --line:       rgba(0,0,0,.07);
-  --line2:      rgba(0,0,0,.13);
-
-  --text:       #0D1F17;
-  --muted:      #5A6B62;
-  --dim:        #A8B9B0;
-
-  --display:    'Playfair Display', Georgia, serif;
-  --sans:       'DM Sans', system-ui, sans-serif;
-  --mono:       'JetBrains Mono', monospace;
+/* ── liens et typographie ── */
+a{color:var(--accent);text-decoration:none}
+a.u{position:relative}
+a.u::after{
+  content:'';position:absolute;left:0;bottom:-2px;width:100%;height:1px;
+  background:currentColor;transform:scaleX(0);transform-origin:left;
+  transition:transform .4s var(--ease);
 }
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { background: var(--bg); color: var(--text); font-family: var(--sans); font-weight: 300; line-height: 1.7; overflow-x: hidden; }
-
-/* REVEAL */
-.reveal { opacity: 0; transform: translateY(22px); transition: opacity .75s cubic-bezier(.22,1,.36,1), transform .75s cubic-bezier(.22,1,.36,1); }
-.reveal.visible { opacity: 1; transform: none; }
-.d1{transition-delay:.09s} .d2{transition-delay:.19s} .d3{transition-delay:.30s} .d4{transition-delay:.41s}
-
-/* NAV */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 24px 68px;
-  transition: background .4s, border-bottom .4s, padding .4s;
-  border-bottom: 1px solid transparent;
-}
-nav.scrolled {
-  background: rgba(242,245,243,.95);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid var(--line);
-  padding: 16px 68px;
-}
-.nav-logo {
-  font-family: var(--display);
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--green-dk);
-  text-decoration: none;
-  letter-spacing: .01em;
-}
-.nav-links { display: flex; gap: 38px; list-style: none; }
-.nav-links a {
-  font-family: var(--sans);
-  font-size: .82rem;
-  font-weight: 400;
-  color: var(--muted);
-  text-decoration: none;
-  letter-spacing: .03em;
-  transition: color .25s;
-  position: relative;
-}
-.nav-links a::after {
-  content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
-  height: 1.5px; background: var(--green);
-  transform: scaleX(0); transform-origin: left;
-  transition: transform .3s cubic-bezier(.22,1,.36,1);
-}
-.nav-links a:hover, .nav-links a.active { color: var(--green-dk); }
-.nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
-
-/* HERO */
-#hero {
-  min-height: 100vh;
-  display: grid; grid-template-rows: 1fr auto;
-  padding: 0 68px;
-  border-bottom: 1px solid var(--line);
-  background: linear-gradient(160deg, #FFFFFF 0%, var(--bg) 60%);
-}
-.hero-inner {
-  display: flex; flex-direction: column; justify-content: center;
-  padding-top: 110px; padding-bottom: 80px; max-width: 860px;
-}
-.hero-eyebrow {
-  font-family: var(--mono); font-size: .68rem; color: var(--green);
-  letter-spacing: .14em; margin-bottom: 32px; text-transform: uppercase;
-  display: flex; align-items: center; gap: 14px;
-}
-.hero-eyebrow::before { content:''; display:block; width:28px; height:1.5px; background:var(--green); }
-
-h1.hero-name {
-  font-family: var(--display);
-  font-size: clamp(3.4rem, 8vw, 8rem);
-  font-weight: 500;
-  line-height: .95;
-  letter-spacing: -.02em;
-  color: var(--text);
-  margin-bottom: 32px;
-}
-h1.hero-name em {
-  font-style: italic;
-  font-weight: 400;
-  color: var(--green);
-  display: block;
+a.u:hover::after{transform:scaleX(1)}
+h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.01em;margin:0}
+.lbl{
+  font-family:var(--mono);font-size:11px;font-weight:400;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--ink-faint);
 }
 
-.hero-desc {
-  font-family: var(--sans);
-  font-size: 1.05rem;
-  font-weight: 300;
-  color: var(--muted);
-  max-width: 500px;
-  line-height: 1.85;
-  margin-bottom: 48px;
+/* ── barre de navigation ── */
+header{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:var(--paper);
+  background:var(--paper-blur);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid transparent;
+  transition:border-color .4s var(--ease),background .4s var(--ease);
 }
-.hero-desc strong { color: var(--text); font-weight: 500; }
-
-.hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-
-.btn {
-  display: inline-block; font-family: var(--sans);
-  font-size: .8rem; font-weight: 500; letter-spacing: .04em;
-  text-decoration: none; padding: 13px 30px;
-  border: 1.5px solid var(--line2); color: var(--text);
-  background: var(--surface);
-  transition: background .22s, border-color .22s, color .22s, box-shadow .22s;
-  cursor: pointer;
-  box-shadow: 0 1px 3px rgba(0,0,0,.06);
+header.pinned{border-bottom-color:var(--line)}
+.nav{display:flex;align-items:center;gap:28px;height:62px}
+.brand{font-family:var(--serif);font-size:16px;letter-spacing:.01em;color:var(--ink);margin-right:auto}
+.nav a.link{font-size:13px;color:var(--ink-soft);transition:color .3s var(--ease)}
+.nav a.link:hover{color:var(--accent)}
+@media(max-width:780px){.nav a.link{display:none}}
+.ctrl{
+  display:flex;align-items:center;gap:0;border:1px solid var(--line);
+  border-radius:999px;overflow:hidden;background:var(--paper);
 }
-.btn:hover { background: var(--bg2); border-color: var(--line2); }
-.btn-fill { background: var(--green); border-color: var(--green); color: #fff; box-shadow: 0 2px 12px rgba(0,150,94,.25); }
-.btn-fill:hover { background: var(--green-dk); border-color: var(--green-dk); box-shadow: 0 4px 18px rgba(0,150,94,.3); }
-
-.hero-meta { display: grid; grid-template-columns: repeat(3,1fr); border-top: 1px solid var(--line); }
-.hero-stat { padding: 30px 0; border-right: 1px solid var(--line); }
-.hero-stat:last-child { border-right: none; }
-.stat-val {
-  font-family: var(--display);
-  font-size: 2.4rem; font-weight: 500;
-  color: var(--green); line-height: 1; margin-bottom: 6px;
+.ctrl button{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  padding:6px 11px;border:0;background:transparent;color:var(--ink-faint);
+  cursor:pointer;transition:background .3s var(--ease),color .3s var(--ease);
 }
-.stat-label { font-family: var(--mono); font-size: .62rem; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
+.ctrl button[aria-pressed="true"]{background:var(--accent);color:var(--paper)}
+.ctrl button:hover:not([aria-pressed="true"]){color:var(--ink)}
+#theme{border-left:1px solid var(--line);padding:6px 10px;font-size:13px}
 
-/* SECTION */
-.section-wrap { max-width: 1180px; margin: 0 auto; padding: 104px 68px; border-bottom: 1px solid var(--line); }
-.section-head { display: flex; align-items: baseline; gap: 18px; margin-bottom: 68px; }
-.section-num { font-family: var(--mono); font-size: .65rem; color: var(--dim); letter-spacing: .12em; }
-h2.section-title {
-  font-family: var(--display);
-  font-size: clamp(1.9rem, 3.2vw, 2.8rem);
-  font-weight: 500;
-  color: var(--text);
-  letter-spacing: -.015em;
-  line-height: 1.1;
-}
-h2.section-title em { font-style: italic; font-weight: 400; color: var(--green); }
-
-/* ABOUT */
-.about-cols { display: grid; grid-template-columns: 5fr 4fr; gap: 80px; align-items: start; }
-.about-body p { color: var(--muted); font-size: .97rem; line-height: 1.9; margin-bottom: 18px; font-weight: 300; }
-.about-body p strong { color: var(--text); font-weight: 500; }
-.about-contact { margin-top: 38px; }
-.c-line { display: flex; align-items: center; gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--line); }
-.c-line:first-child { border-top: 1px solid var(--line); }
-.c-key { font-family: var(--mono); font-size: .63rem; color: var(--dim); letter-spacing: .09em; width: 82px; flex-shrink: 0; }
-.c-val { font-size: .9rem; color: var(--text); font-weight: 300; }
-.c-val a { color: var(--green); text-decoration: none; }
-.c-val a:hover { text-decoration: underline; }
-
-/* TIMELINE */
-.tl-item { padding: 0 0 28px; }
-.tl-item + .tl-item { border-top: 1px solid var(--line); padding-top: 26px; }
-.tl-year { font-family: var(--mono); font-size: .64rem; color: var(--green); letter-spacing: .1em; margin-bottom: 7px; text-transform: uppercase; }
-.tl-name { font-family: var(--display); font-size: 1.05rem; font-weight: 500; color: var(--text); margin-bottom: 5px; }
-.tl-detail { font-size: .84rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
-.badge {
-  display: inline-block; margin-top: 9px; padding: 3px 12px;
-  background: var(--green-dim); border: 1px solid var(--green-line);
-  font-family: var(--mono); font-size: .6rem; color: var(--green-dk); letter-spacing: .09em;
-  border-radius: 2px;
+/* ── révélation au scroll ── */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .rv{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
 }
 
-/* SKILLS */
-.skills-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--line); }
-.skill-cell {
-  background: var(--surface); padding: 34px 30px;
-  transition: background .25s, box-shadow .25s;
-  border-top: 3px solid transparent;
+/* ── héros ── */
+.hero{padding:150px 0 90px;position:relative;overflow:hidden}
+.hero-grid{
+  position:absolute;inset:0;z-index:0;opacity:.5;pointer-events:none;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),
+                   linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:72px 72px;
+  mask-image:radial-gradient(ellipse 70% 60% at 68% 32%,#000 0%,transparent 72%);
+  -webkit-mask-image:radial-gradient(ellipse 70% 60% at 68% 32%,#000 0%,transparent 72%);
 }
-.skill-cell:hover { background: var(--bg); border-top-color: var(--green); }
-.skill-cat { font-family: var(--mono); font-size: .62rem; font-weight: 400; color: var(--green); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 12px; }
-.skill-cell h3 { font-family: var(--display); font-size: 1.1rem; font-weight: 500; color: var(--text); margin-bottom: 20px; }
-.tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.tag { font-family: var(--sans); font-size: .72rem; font-weight: 300; color: var(--muted); padding: 4px 11px; border: 1px solid var(--line2); background: var(--bg); letter-spacing: .02em; transition: color .2s, background .2s, border-color .2s; }
-.skill-cell:hover .tag { color: var(--text); background: var(--surface); border-color: var(--green-line); }
+.hero>.wrap{position:relative;z-index:1}
+.hero h1{font-size:clamp(2.6rem,7vw,4.6rem);line-height:1.04;margin:14px 0 0}
+.hero h1 .ln{display:block;overflow:hidden}
+.hero h1 .ln>span{display:block;transform:translateY(105%);animation:rise 1s var(--ease) forwards}
+.hero h1 .ln:nth-child(2)>span{animation-delay:.1s}
+@keyframes rise{to{transform:none}}
+@media(prefers-reduced-motion:reduce){.hero h1 .ln>span{transform:none;animation:none}}
+.hero .sub{
+  font-family:var(--serif);font-size:clamp(1.05rem,2.1vw,1.3rem);font-style:italic;
+  color:var(--ink-soft);margin:22px 0 0;max-width:30em;
+}
+.spec{
+  font-family:var(--mono);font-size:12.5px;color:var(--ink-faint);
+  margin:26px 0 0;display:flex;flex-wrap:wrap;gap:8px 14px;
+}
+.spec span{display:inline-flex;align-items:center;gap:8px}
+.spec span:not(:last-child)::after{content:'·';color:var(--line)}
+.avail{
+  display:inline-flex;align-items:center;gap:9px;margin:34px 0 0;padding:8px 15px;
+  border:1px solid var(--line);border-radius:999px;background:var(--accent-wash);
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;color:var(--accent);
+}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--accent);position:relative;flex:none}
+.dot::after{
+  content:'';position:absolute;inset:0;border-radius:50%;background:inherit;
+  animation:ping 2.4s var(--ease) infinite;
+}
+@keyframes ping{0%{transform:scale(1);opacity:.65}70%,100%{transform:scale(3.4);opacity:0}}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin:38px 0 0}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;padding:11px 20px;
+  font-size:13.5px;border-radius:3px;border:1px solid var(--accent);
+  transition:background .35s var(--ease),color .35s var(--ease),transform .35s var(--ease);
+}
+.btn.solid{background:var(--accent);color:var(--paper)}
+.btn.solid:hover{transform:translateY(-2px)}
+.btn.ghost{color:var(--accent)}
+.btn.ghost:hover{background:var(--accent-wash);transform:translateY(-2px)}
 
-/* PROJECTS */
-.filter-row { display: flex; flex-wrap: wrap; margin-bottom: 48px; border-bottom: 1.5px solid var(--line); }
-.f-btn {
-  font-family: var(--sans); font-size: .78rem; font-weight: 400;
-  color: var(--muted); background: none; border: none;
-  padding: 11px 20px; cursor: pointer;
-  border-bottom: 2px solid transparent; margin-bottom: -1.5px;
-  transition: color .2s;
+/* ── chiffres clés ── */
+.stats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:1px;background:var(--line);border:1px solid var(--line);
+  margin:72px 0 0;border-radius:3px;overflow:hidden;
 }
-.f-btn:hover { color: var(--text); }
-.f-btn.active { color: var(--green-dk); font-weight: 500; border-bottom-color: var(--green); }
+.stat{background:var(--paper);padding:22px 20px}
+.stat b{
+  display:block;font-family:var(--serif);font-size:2rem;font-weight:400;
+  color:var(--accent);line-height:1.1;font-variant-numeric:tabular-nums;
+}
+.stat small{display:block;font-size:12.5px;color:var(--ink-soft);margin-top:5px;line-height:1.4}
 
-.proj-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--line); }
-.proj-card {
-  background: var(--surface); padding: 34px 30px;
-  display: flex; flex-direction: column;
-  transition: background .25s;
-  border-top: 3px solid transparent;
-}
-.proj-card:hover { background: var(--bg); border-top-color: var(--green); }
-.proj-card.hidden { display: none; }
-.proj-yr { font-family: var(--mono); font-size: .62rem; color: var(--green); letter-spacing: .08em; margin-bottom: 13px; }
-.proj-card h3 { font-family: var(--display); font-size: 1.08rem; font-weight: 500; color: var(--text); line-height: 1.35; margin-bottom: 14px; }
-.proj-card p { font-size: .84rem; font-weight: 300; color: var(--muted); line-height: 1.78; margin-bottom: 26px; flex: 1; }
-.proj-links { display: flex; gap: 16px; margin-top: auto; }
-.proj-link {
-  font-family: var(--sans); font-size: .75rem; font-weight: 500;
-  color: var(--muted); text-decoration: none;
-  letter-spacing: .04em; display: flex; align-items: center; gap: 6px;
-  transition: color .2s;
-}
-.proj-link:hover { color: var(--green-dk); }
-.proj-link svg { width: 12px; height: 12px; stroke: currentColor; fill: none; }
+/* ── sections ── */
+section{padding:92px 0;border-top:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin:0 0 42px}
+.sec-head .num{font-family:var(--mono);font-size:12px;color:var(--accent);letter-spacing:.1em}
+.sec-head h2{font-size:clamp(1.6rem,3.6vw,2.2rem)}
+.two{display:grid;grid-template-columns:1.25fr .85fr;gap:56px}
+@media(max-width:860px){.two{grid-template-columns:1fr;gap:38px}}
+p{margin:0 0 16px;color:var(--ink-soft);max-width:62ch}
+p strong{color:var(--ink);font-weight:500}
 
-/* CONTACT */
-.contact-table { width: 100%; border-collapse: collapse; margin-top: 44px; max-width: 600px; }
-.contact-table tr { border-bottom: 1px solid var(--line); }
-.contact-table tr:first-child { border-top: 1px solid var(--line); }
-.contact-table td { padding: 18px 6px; }
-.contact-table td:first-child { font-family: var(--mono); font-size: .63rem; color: var(--dim); letter-spacing: .09em; width: 120px; vertical-align: middle; }
-.contact-table td:last-child { font-size: .92rem; font-weight: 300; color: var(--text); }
-.contact-table a { color: var(--green-dk); text-decoration: none; }
-.contact-table a:hover { text-decoration: underline; }
-.contact-intro { font-family: var(--display); font-size: 1.15rem; font-style: italic; font-weight: 400; color: var(--muted); max-width: 500px; line-height: 1.7; }
+/* ── parcours ── */
+.tl{list-style:none;margin:0;padding:0;position:relative}
+.tl::before{content:'';position:absolute;left:5px;top:7px;bottom:7px;width:1px;background:var(--line)}
+.tl li{position:relative;padding:0 0 24px 26px}
+.tl li:last-child{padding-bottom:0}
+.tl li::before{
+  content:'';position:absolute;left:0;top:7px;width:11px;height:11px;border-radius:50%;
+  background:var(--paper);border:1.5px solid var(--line);transition:border-color .4s var(--ease);
+}
+.tl li.now::before{border-color:var(--accent);background:var(--accent)}
+.tl .yr{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.07em}
+.tl .ti{font-weight:500;color:var(--ink);font-size:14.5px;margin-top:2px}
+.tl .de{font-size:13px;color:var(--ink-soft);line-height:1.5}
 
-/* FOOTER */
-footer {
-  max-width: 1180px; margin: 0 auto;
-  padding: 34px 68px; display: flex; justify-content: space-between; align-items: center;
+/* ── compétences ── */
+.sk{display:grid;gap:22px}
+.sk-row{border-top:1px solid var(--line);padding-top:16px}
+.sk-row:first-child{border-top:0;padding-top:0}
+.sk-row h3{font-size:13px;font-family:var(--sans);font-weight:600;letter-spacing:.02em;margin:0 0 10px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{
+  font-family:var(--mono);font-size:11.5px;padding:5px 10px;border-radius:2px;
+  background:var(--paper-2);border:1px solid var(--line);color:var(--ink-soft);
+  transition:border-color .3s var(--ease),color .3s var(--ease),transform .3s var(--ease);
 }
-.f-copy { font-family: var(--mono); font-size: .63rem; color: var(--dim); letter-spacing: .07em; }
-.f-copy span { color: var(--muted); }
-.f-logo { font-family: var(--display); font-size: .95rem; font-weight: 500; color: var(--green-dk); }
+.chip:hover{border-color:var(--accent-soft);color:var(--accent);transform:translateY(-1px)}
 
-/* RESPONSIVE */
-@media (max-width: 960px) {
-  nav, nav.scrolled { padding: 18px 28px; }
-  #hero { padding: 0 28px; }
-  .section-wrap { padding: 76px 28px; }
-  .about-cols { grid-template-columns: 1fr; gap: 52px; }
-  .skills-grid { grid-template-columns: 1fr 1fr; }
-  .proj-grid { grid-template-columns: 1fr 1fr; }
-  footer { padding: 28px; }
+/* ── projets ── */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 30px}
+.filters button{
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;padding:7px 13px;
+  border:1px solid var(--line);background:transparent;color:var(--ink-faint);
+  border-radius:2px;cursor:pointer;
+  transition:border-color .3s var(--ease),color .3s var(--ease),background .3s var(--ease);
 }
-@media (max-width: 600px) {
-  .nav-links { display: none; }
-  .skills-grid, .proj-grid { grid-template-columns: 1fr; }
-  h1.hero-name { font-size: 3rem; }
-  .hero-meta { grid-template-columns: 1fr 1fr; }
+.filters button:hover{color:var(--ink);border-color:var(--ink-faint)}
+.filters button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.projects{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.card{
+  background:var(--paper);padding:26px 28px;position:relative;
+  transition:background .4s var(--ease),opacity .45s var(--ease),transform .45s var(--ease);
 }
+.card.hide{display:none}
+.card.fade{opacity:0;transform:scale(.985)}
+.card:hover{background:var(--paper-2)}
+.card::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent);
+  transform:scaleY(0);transform-origin:top;transition:transform .45s var(--ease);
+}
+.card:hover::before{transform:scaleY(1)}
+.card .meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:9px}
+.card .meta .y{font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.07em}
+.card .meta .tag{
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 8px;border-radius:2px;background:var(--accent-wash);color:var(--accent);
+}
+.card h3{font-size:1.14rem;margin:0 0 9px;line-height:1.35}
+.card p{font-size:14px;margin:0 0 13px;max-width:72ch}
+.card .nums{
+  display:flex;flex-wrap:wrap;gap:6px 18px;margin:0 0 14px;
+  font-family:var(--mono);font-size:11.5px;color:var(--ink-faint);
+}
+.card .nums b{color:var(--accent-soft);font-weight:500}
+.card .links{display:flex;flex-wrap:wrap;gap:16px;font-size:12.5px;font-family:var(--mono)}
+.card .links a{display:inline-flex;align-items:center;gap:6px;color:var(--accent)}
+
+/* ── contact ── */
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:3px;overflow:hidden}
+.kv div{background:var(--paper);padding:18px 20px}
+.kv .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:5px}
+.kv .v{font-size:14.5px;color:var(--ink)}
+footer{border-top:1px solid var(--line);padding:30px 0 42px}
+.foot{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;font-size:12.5px;color:var(--ink-faint)}
+
+/* ── bilingue : on n'affiche que la langue active ── */
+[data-lang="fr"] .en,[data-lang="en"] .fr{display:none}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav id="nav">
-  <a href="#hero" class="nav-logo">Saadeddine Bejaoui</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
-
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-inner">
-    <div class="hero-eyebrow reveal">Portfolio · Ingénieur</div>
-    <h1 class="hero-name reveal d1">
-      Saadeddine
-      <em>Bejaoui</em>
-    </h1>
-    <p class="hero-desc reveal d2">
-      Ingénieur en formation · Double diplômation <strong>ENIT – ENSIIE</strong><br>
-      Spécialité <strong>Mathématiques Appliquées</strong> —
-      <strong>Mathématiques Appliquées — mathématiques appliquées, finance et actuariat, modélisation.</strong>
-    </p>
-    <div class="hero-actions reveal d3">
-      <a href="#projects" class="btn btn-fill">Voir les projets</a>
-      <a href="rapports/CV_Saadeddine_Bejaoui.pdf" class="btn" download>Télécharger CV</a>
-      <a href="#contact" class="btn">Contact</a>
+<header id="hdr">
+  <div class="wrap nav">
+    <a class="brand" href="#top">Saadeddine&nbsp;Bejaoui</a>
+    <a class="link u" href="#profil"><span class="fr">Profil</span><span class="en">Profile</span></a>
+    <a class="link u" href="#competences"><span class="fr">Compétences</span><span class="en">Skills</span></a>
+    <a class="link u" href="#projets"><span class="fr">Projets</span><span class="en">Projects</span></a>
+    <a class="link u" href="#contact">Contact</a>
+    <div class="ctrl">
+      <button id="fr" aria-pressed="true">FR</button>
+      <button id="en" aria-pressed="false">EN</button>
+      <button id="theme" aria-label="Thème">◐</button>
     </div>
   </div>
-  <div class="hero-meta reveal d4">
-    <div class="hero-stat"><div class="stat-val">7+</div><div class="stat-label">Projets académiques</div></div>
-    <div class="hero-stat"><div class="stat-val">3</div><div class="stat-label">Domaines d'expertise</div></div>
-    <div class="hero-stat"><div class="stat-val">C1</div><div class="stat-label">Anglais certifié</div></div>
+</header>
+
+<main id="top">
+
+<!-- ══ HÉROS ══ -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="wrap">
+    <p class="lbl">
+      <span class="fr">M2 Quantitative Finance · ENSIIE / Université Paris-Saclay</span>
+      <span class="en">MSc Quantitative Finance · ENSIIE / Université Paris-Saclay</span>
+    </p>
+    <h1>
+      <span class="ln"><span>Saadeddine</span></span>
+      <span class="ln"><span>Bejaoui</span></span>
+    </h1>
+    <p class="sub">
+      <span class="fr">Finance quantitative : pricing de dérivés, modélisation du risque et méthodes numériques appliquées aux marchés.</span>
+      <span class="en">Quantitative finance: derivatives pricing, risk modelling and numerical methods applied to markets.</span>
+    </p>
+    <div class="spec">
+      <span class="fr">Pricing de dérivés</span><span class="en">Derivatives pricing</span>
+      <span class="fr">Calcul stochastique</span><span class="en">Stochastic calculus</span>
+      <span class="fr">Risque de marché et de contrepartie</span><span class="en">Market and counterparty risk</span>
+      <span class="fr">Monte Carlo</span><span class="en">Monte Carlo</span>
+      <span class="fr">Python / C++</span><span class="en">Python / C++</span>
+    </div>
+    <div class="avail">
+      <span class="dot"></span>
+      <span class="fr">Recherche un stage de fin d'études de 6 mois — printemps 2027</span>
+      <span class="en">Seeking a six-month final-year internship — spring 2027</span>
+    </div>
+    <div class="cta">
+      <a class="btn solid" href="rapports/CV_Saadeddine_Bejaoui.pdf">
+        <span class="fr">Télécharger le CV</span><span class="en">Download CV</span> ↓
+      </a>
+      <a class="btn ghost" href="#projets">
+        <span class="fr">Voir les projets</span><span class="en">View projects</span> →
+      </a>
+    </div>
+
+    <div class="stats rv">
+      <div class="stat"><b data-to="7249">0</b><small><span class="fr">options SPX calibrées conjointement au VIX</span><span class="en">SPX options jointly calibrated with VIX</span></small></div>
+      <div class="stat"><b data-to="630" data-suffix="k">0</b><small><span class="fr">observations traitées en apprentissage supervisé</span><span class="en">observations in a supervised learning pipeline</span></small></div>
+      <div class="stat"><b data-to="0.9997" data-dec="4">0</b><small><span class="fr">R² du réseau surrogate de pricing</span><span class="en">R² of the surrogate pricing network</span></small></div>
+      <div class="stat"><b data-to="6">0</b><small><span class="fr">projets quantitatifs, rapports publiés</span><span class="en">quantitative projects, reports published</span></small></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PROFIL ══ -->
+<section id="profil">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="num">01</span><h2><span class="fr">Profil &amp; parcours</span><span class="en">Profile &amp; background</span></h2></div>
+    <div class="two">
+      <div class="rv">
+        <p class="fr">Je suis en <strong>M2 Quantitative Finance</strong> à l'ENSIIE et à l'Université Paris-Saclay, dans le cadre d'un double diplôme avec l'<strong>ENIT de Tunis</strong>. Mon travail porte sur le pricing de dérivés, la calibration de modèles de volatilité et les méthodes de Monte Carlo.</p>
+        <p class="en">I am in the <strong>MSc Quantitative Finance</strong> at ENSIIE and Université Paris-Saclay, on a double degree with <strong>ENIT in Tunis</strong>. My work is on derivatives pricing, volatility model calibration and Monte Carlo methods.</p>
+
+        <p class="fr">Je suis venu à la finance par les mathématiques. Ce qui m'y retient, c'est qu'un modèle n'y est pas jugé sur son élégance : il est jugé sur sa tenue face à des données qui n'ont pas été collectées pour lui plaire. La question qui m'occupe le plus est celle des <strong>hypothèses et de l'endroit où elles cassent</strong> — un prix sans son intervalle de confiance n'est pas une décision.</p>
+        <p class="en">I came to finance through mathematics. What keeps me here is that a model is not judged on elegance: it is judged on whether it holds up against data that was not collected to please it. The question that occupies me most is that of <strong>assumptions and where they break</strong> — a price without its confidence interval is not a decision.</p>
+
+        <p class="fr">Ce cursus se conclut par un <strong>stage de six mois</strong>, que je peux commencer au printemps 2027. Je cherche un desk où la modélisation est confrontée au marché plutôt qu'à l'attente.</p>
+        <p class="en">The programme ends with a <strong>six-month internship</strong>, which I can start in spring 2027. I am looking for a desk where modelling is tested against the market rather than against expectation.</p>
+      </div>
+      <div class="rv">
+        <p class="lbl" style="margin-bottom:16px"><span class="fr">Formation</span><span class="en">Education</span></p>
+        <ul class="tl">
+          <li class="now">
+            <div class="yr">2026 — 2027</div>
+            <div class="ti"><span class="fr">M2 Quantitative Finance</span><span class="en">MSc Quantitative Finance</span></div>
+            <div class="de">ENSIIE / Université Paris-Saclay · Paris</div>
+          </li>
+          <li>
+            <div class="yr">2025 — 2026</div>
+            <div class="ti"><span class="fr">M1 Mathématiques appliquées</span><span class="en">MSc1 Applied Mathematics</span></div>
+            <div class="de"><span class="fr">Double diplôme ENIT (Tunis) / ENSIIE · Paris</span><span class="en">ENIT (Tunis) / ENSIIE double degree · Paris</span></div>
+          </li>
+          <li>
+            <div class="yr">2024 — 2025</div>
+            <div class="ti"><span class="fr">Cycle ingénieur</span><span class="en">Engineering programme</span></div>
+            <div class="de"><span class="fr">ENIT · Modélisation pour l'industrie et les services, finance et actuariat · Tunis</span><span class="en">ENIT · Modelling for Industry and Services, finance and actuarial science · Tunis</span></div>
+          </li>
+          <li>
+            <div class="yr">2022 — 2024</div>
+            <div class="ti"><span class="fr">Classes préparatoires MP</span><span class="en">Preparatory classes, Maths–Physics</span></div>
+            <div class="de">IPEIT · Tunis</div>
+          </li>
+          <li>
+            <div class="yr">2022</div>
+            <div class="ti"><span class="fr">Baccalauréat mathématiques</span><span class="en">Baccalauréat in Mathematics</span></div>
+            <div class="de"><span class="fr">Mention Très Bien · Tunisie</span><span class="en">Highest honours · Tunisia</span></div>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ABOUT -->
-<div class="section-wrap" id="about">
-  <div class="section-head reveal">
-    <span class="section-num">02</span>
-    <h2 class="section-title">Formation &amp; <em>Parcours</em></h2>
-  </div>
-  <div class="about-cols">
-    <div class="about-body reveal d1">
-      <p>Ingénieur en formation à l'<strong>École Nationale des Ingénieurs de Tunis (ENIT)</strong>, actuellement en double diplômation avec l'<strong>ENSIIE (Paris)</strong>, au niveau M1 Mathématiques Appliquées.</p>
-      <p>Mon travail se situe à l'intersection des <strong>mathématiques appliquées</strong>, de la <strong>finance et actuariat</strong> et de la <strong>modélisation</strong>. Je m'intéresse particulièrement à la calibration de modèles de volatilité et aux méthodes bayésiennes computationnelles.</p>
-      <p>Titulaire d'un baccalauréat obtenu avec <strong>mention Très Bien</strong>, j'ai suivi deux années de classes préparatoires MP à l'IPEIT avant d'intégrer le cycle ingénieur MIndS à l'ENIT.</p>
-      <div class="about-contact">
-        <div class="c-line"><span class="c-key">email</span><span class="c-val"><a href="mailto:bejaouisaadeddine18@gmail.com">bejaouisaadeddine18@gmail.com</a></span></div>
-        <div class="c-line"><span class="c-key">téléphone</span><span class="c-val">+33 07 51 16 93 35</span></div>
-        <div class="c-line"><span class="c-key">location</span><span class="c-val">Paris, France</span></div>
-        <div class="c-line"><span class="c-key">linkedin</span><span class="c-val"><a href="https://www.linkedin.com/in/bejaoui-saad-eddine-2ba628360" target="_blank">bejaoui-saad-eddine</a></span></div>
+<!-- ══ COMPÉTENCES ══ -->
+<section id="competences">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="num">02</span><h2><span class="fr">Compétences techniques</span><span class="en">Technical skills</span></h2></div>
+    <div class="two">
+      <div class="sk rv">
+        <div class="sk-row">
+          <h3><span class="fr">Finance quantitative</span><span class="en">Quantitative finance</span></h3>
+          <div class="chips">
+            <span class="chip"><span class="fr">Pricing de dérivés</span><span class="en">Derivatives pricing</span></span>
+            <span class="chip"><span class="fr">Calibration de modèles</span><span class="en">Model calibration</span></span>
+            <span class="chip"><span class="fr">Volatilité stochastique</span><span class="en">Stochastic volatility</span></span>
+            <span class="chip">Greeks</span>
+            <span class="chip"><span class="fr">Modèles de taux</span><span class="en">Interest rate models</span></span>
+            <span class="chip"><span class="fr">Instruments financiers</span><span class="en">Financial instruments</span></span>
+          </div>
+        </div>
+        <div class="sk-row">
+          <h3><span class="fr">Risque</span><span class="en">Risk</span></h3>
+          <div class="chips">
+            <span class="chip"><span class="fr">Gestion des risques</span><span class="en">Risk management</span></span>
+            <span class="chip">VaR · Expected Shortfall</span>
+            <span class="chip"><span class="fr">Stress testing</span><span class="en">Stress testing</span></span>
+            <span class="chip">XVA</span>
+            <span class="chip"><span class="fr">Risque de contrepartie</span><span class="en">Counterparty credit risk</span></span>
+          </div>
+        </div>
+        <div class="sk-row">
+          <h3><span class="fr">Mathématiques</span><span class="en">Mathematics</span></h3>
+          <div class="chips">
+            <span class="chip"><span class="fr">Calcul stochastique</span><span class="en">Stochastic calculus</span></span>
+            <span class="chip"><span class="fr">Monte Carlo et réduction de variance</span><span class="en">Monte Carlo, variance reduction</span></span>
+            <span class="chip"><span class="fr">Probabilités et statistiques</span><span class="en">Probability and statistics</span></span>
+            <span class="chip"><span class="fr">Séries temporelles GARCH</span><span class="en">GARCH time series</span></span>
+            <span class="chip"><span class="fr">Optimisation</span><span class="en">Optimisation</span></span>
+            <span class="chip"><span class="fr">Statistique bayésienne</span><span class="en">Bayesian statistics</span></span>
+          </div>
+        </div>
+        <div class="sk-row">
+          <h3><span class="fr">Programmation</span><span class="en">Programming</span></h3>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">C++</span><span class="chip">SQL</span>
+            <span class="chip">MATLAB</span><span class="chip">R</span><span class="chip">VBA</span>
+          </div>
+        </div>
+      </div>
+      <div class="rv">
+        <p class="lbl" style="margin-bottom:14px"><span class="fr">Langues</span><span class="en">Languages</span></p>
+        <div class="chips" style="margin-bottom:30px">
+          <span class="chip"><span class="fr">Arabe — maternelle</span><span class="en">Arabic — native</span></span>
+          <span class="chip"><span class="fr">Français — bilingue</span><span class="en">French — bilingual</span></span>
+          <span class="chip"><span class="fr">Anglais — C1 certifié</span><span class="en">English — certified C1</span></span>
+          <span class="chip"><span class="fr">Allemand — notions</span><span class="en">German — basic</span></span>
+        </div>
+        <p class="lbl" style="margin-bottom:14px"><span class="fr">Expérience</span><span class="en">Experience</span></p>
+        <ul class="tl">
+          <li>
+            <div class="yr"><span class="fr">Été 2024</span><span class="en">Summer 2024</span></div>
+            <div class="ti"><span class="fr">Stagiaire, service juridique et assurances</span><span class="en">Intern, legal and insurance department</span></div>
+            <div class="de"><span class="fr">STEG, Société Tunisienne de l'Électricité et du Gaz · un mois · Tunis</span><span class="en">STEG, Tunisian Electricity and Gas Company · one month · Tunis</span></div>
+          </li>
+        </ul>
+        <p class="lbl" style="margin:30px 0 14px"><span class="fr">Centres d'intérêt</span><span class="en">Interests</span></p>
+        <p style="font-size:13.5px">
+          <span class="fr">Football en compétition, 2015–2022 — centre de formation du Club Athlétique Bizertin (Ligue 1 tunisienne), Paris International Games 2016.</span>
+          <span class="en">Competitive football, 2015–2022 — youth academy of Club Athlétique Bizertin (Tunisian Ligue 1), Paris International Games 2016.</span>
+        </p>
       </div>
     </div>
-    <div class="reveal d2">
-      <div class="tl-item"><div class="tl-year">2025 – 2026</div><div class="tl-name">Double Diplômation ENIT – ENSIIE</div><div class="tl-detail">M1 Mathématiques Appliquées · Paris</div><span class="badge">En cours</span></div>
-      <div class="tl-item"><div class="tl-year">2024 – 2025</div><div class="tl-name">Cycle Ingénieur — ENIT</div><div class="tl-detail">Spécialité MIndS — Modélisation pour l'Industrie et les Services · Tunis</div></div>
-      <div class="tl-item"><div class="tl-year">2022 – 2024</div><div class="tl-name">Classes Préparatoires MP</div><div class="tl-detail">IPEIT · Tunis</div></div>
-      <div class="tl-item"><div class="tl-year">2022</div><div class="tl-name">Baccalauréat</div><div class="tl-detail">Tunisie</div><span class="badge">Mention Très Bien</span></div>
-      <div class="tl-item"><div class="tl-year">Été 2024</div><div class="tl-name">Stage ouvrier — STEG</div><div class="tl-detail">Service Juridique & Assurances · 1 mois · Tunis</div></div>
-    </div>
   </div>
-</div>
+</section>
 
-<!-- SKILLS -->
-<div class="section-wrap" id="skills">
-  <div class="section-head reveal"><span class="section-num">03</span><h2 class="section-title">Compétences &amp; <em>Outils</em></h2></div>
-  <div class="skills-grid">
-    <div class="skill-cell reveal d1"><div class="skill-cat">Mathématiques</div><h3>Mathématiques Appliquées</h3><div class="tags"><span class="tag">Modélisation stochastique</span><span class="tag">Probabilités</span><span class="tag">Optimisation différentiable</span><span class="tag">Traitement du signal</span><span class="tag">Statistique bayésienne</span></div></div>
-    <div class="skill-cell reveal d2"><div class="skill-cat">Finance</div><h3>Finance Quantitative</h3><div class="tags"><span class="tag">Modèles de volatilité</span><span class="tag">Calibration d'options</span><span class="tag">Instruments financiers et dérivés</span><span class="tag">Pricing</span></div></div>
-    <div class="skill-cell reveal d3"><div class="skill-cat">Data & ML</div><h3>Machine Learning</h3><div class="tags"><span class="tag">Modélisation prédictive</span><span class="tag">Régression</span><span class="tag">Classification</span><span class="tag">Analyse de données</span></div></div>
-    <div class="skill-cell reveal d1"><div class="skill-cat">Programmation</div><h3>Langages</h3><div class="tags"><span class="tag">Python</span><span class="tag">R</span><span class="tag">C</span><span class="tag">C++</span><span class="tag">Java</span><span class="tag">MATLAB</span></div></div>
-    <div class="skill-cell reveal d2"><div class="skill-cat">Langues</div><h3>Communication</h3><div class="tags"><span class="tag">Arabe — Natif</span><span class="tag">Français — Avancé</span><span class="tag">Anglais — C1 certifié</span><span class="tag">Allemand — A1</span></div></div>
-    <div class="skill-cell reveal d3"><div class="skill-cat">Recherche</div><h3>Méthodes</h3><div class="tags"><span class="tag">Simulation numérique</span><span class="tag">Algorithmes</span><span class="tag">Rédaction scientifique</span><span class="tag">Modélisation</span></div></div>
-  </div>
-</div>
+<!-- ══ PROJETS ══ -->
+<section id="projets">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="num">03</span><h2><span class="fr">Projets quantitatifs</span><span class="en">Quantitative projects</span></h2></div>
+    <div class="filters rv" role="group">
+      <button data-f="all" aria-pressed="true"><span class="fr">Tous</span><span class="en">All</span></button>
+      <button data-f="finance" aria-pressed="false"><span class="fr">Finance quantitative</span><span class="en">Quantitative finance</span></button>
+      <button data-f="proba" aria-pressed="false"><span class="fr">Probabilités &amp; statistique</span><span class="en">Probability &amp; statistics</span></button>
+      <button data-f="ml" aria-pressed="false"><span class="fr">ML &amp; optimisation</span><span class="en">ML &amp; optimisation</span></button>
+      <button data-f="signal" aria-pressed="false"><span class="fr">Signal</span><span class="en">Signal</span></button>
+    </div>
 
-<!-- PROJECTS -->
-<div class="section-wrap" id="projects">
-  <div class="section-head reveal"><span class="section-num">04</span><h2 class="section-title">Projets <em>Académiques</em></h2></div>
-  <div class="filter-row reveal d1">
-    <button class="f-btn active" data-f="all">Tous</button>
-    <button class="f-btn" data-f="proba">Probabilités & Stats</button>
-    <button class="f-btn" data-f="finance">Finance Quantitative</button>
-    <button class="f-btn" data-f="ml">ML & Optimisation</button>
-    <button class="f-btn" data-f="signal">Signal & Systèmes</button>
-  </div>
-  <div class="proj-grid">
-    <!-- Projet Quintic OU mis à jour : plus "En cours", avec liens rapport et code -->
-    <div class="proj-card reveal d1" data-cat="finance">
-      <div class="proj-yr">2026 · Finance Quantitative</div>
-      <h3>Modèle Quintic OU — Calibration jointe SPX/VIX</h3>
-      <p>Calibration jointe des smiles de volatilité SPX et VIX via le modèle Quintic Ornstein-Uhlenbeck. Étude de la structure de corrélation et implémentation numérique.</p>
-      <div class="proj-links">
-        <a href="rapports/Rapport_QuinticOU.pdf" class="proj-link" target="_blank">
-          <svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>
-          Rapport
-        </a>
-        <a href="rapports/Code_QuinticOU.ipynb" class="proj-link" download>
-          <svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/></svg>
-          Code
-        </a>
-      </div>
-    </div>
-    <!-- Prédiction bayésienne crypto -->
-    <div class="proj-card reveal d2" data-cat="proba">
-      <div class="proj-yr">2024–2025 · Statistiques Bayésiennes</div>
-      <h3>Prédiction Bayésienne du Prix d'une Cryptomonnaie — MCMC</h3>
-      <p>Inférence bayésienne et échantillonnage MCMC par l'algorithme de Metropolis-Hastings pour la modélisation et prédiction de prix de cryptomonnaies.</p>
-      <div class="proj-links">
-        <a href="rapports/Rapport_projet_probabilite.pdf" class="proj-link" target="_blank"><svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>Rapport</a>
-        <a href="rapports/Code_Projet_Proba.zip" class="proj-link" download><svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/></svg>Code</a>
-      </div>
-    </div>
-    <!-- Gambling -->
-    <div class="proj-card reveal d3" data-cat="proba">
-      <div class="proj-yr">2024–2025 · Probabilités</div>
-      <h3>Aspects Probabilistes du Gambling</h3>
-      <p>Étude mathématique rigoureuse des propriétés probabilistes et des lois gouvernant les jeux de hasard. Analyse des stratégies optimales et espérances.</p>
-      <div class="proj-links">
-        <a href="rapports/Probabilistic_aspects_of_gambling.pdf" class="proj-link" target="_blank"><svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>Rapport</a>
-      </div>
-    </div>
-    <!-- Compression audio -->
-    <div class="proj-card reveal d1" data-cat="signal">
-      <div class="proj-yr">2024–2025 · Traitement du Signal</div>
-      <h3>Compression Audio par Codage en Sous-Bandes</h3>
-      <p>Chaîne complète de compression/décompression audio : filtrage RIF à phase linéaire, décimation, quantification, interpolation et synthèse.</p>
-      <div class="proj-links">
-        <a href="rapports/Projet_TNS.pdf" class="proj-link" target="_blank"><svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>Rapport</a>
-        <a href="rapports/Code_Projet_TNS.m" class="proj-link" download><svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/></svg>Code</a>
-      </div>
-    </div>
-    <!-- ML Student Test Scores -->
-    <div class="proj-card reveal d2" data-cat="ml">
-      <div class="proj-yr">2025–2026 · Machine Learning</div>
-      <h3>Prédiction des Notes d'Examens par Machine Learning</h3>
-      <p>Développement d'un modèle ML pour prédire les résultats académiques à partir des caractéristiques individuelles et des habitudes d'apprentissage des étudiants.</p>
-      <div class="proj-links">
-        <a href="rapports/Student_Test_Score.pdf" class="proj-link" target="_blank"><svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>Rapport</a>
-        <a href="rapports/Annexe_Code_Source.pdf" class="proj-link" target="_blank"><svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/></svg>Code</a>
-      </div>
-    </div>
-    <!-- Optimisation -->
-    <div class="proj-card reveal d3" data-cat="ml">
-      <div class="proj-yr">2025–2026 · Optimisation Numérique</div>
-      <h3>Optimisation — Éléments Finis &amp; Structures de Tenségrité</h3>
-      <p>Résolution numérique de problèmes d'optimisation sans contraintes, avec contraintes d'inégalité, et optimisation de structures de tenségrité en mécanique.</p>
-      <div class="proj-links">
-        <a href="rapports/Optimisation2AMIndS.pdf" class="proj-link" target="_blank"><svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"/></svg>Rapport</a>
-        <a href="rapports/CodeProjetOptimisation.ipynb" class="proj-link" download><svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"/></svg>Code</a>
-      </div>
-    </div>
-    <!-- Gestion réservations vols -->
-    <div class="proj-card reveal d1" data-cat="signal">
-      <div class="proj-yr">2024–2025 · Développement</div>
-      <h3>Gestion des Réservations de Vols</h3>
-      <p>Application de gestion de réservations de vols avec interface graphique complète. Conception et implémentation d'un système de réservation fonctionnel.</p>
-    </div>
-  </div>
-</div>
+    <div class="projects rv" id="grid">
 
-<!-- CONTACT -->
-<div class="section-wrap" id="contact">
-  <div class="section-head reveal"><span class="section-num">05</span><h2 class="section-title">Contact &amp; <em>Informations</em></h2></div>
-  <div class="reveal d1">
-    <p class="contact-intro">Disponible pour des opportunités en finance quantitative, recherche académique ou stage en mathématiques appliquées.</p>
-    <table class="contact-table">
-      <tr><td>email</td><td><a href="mailto:bejaouisaadeddine18@gmail.com">bejaouisaadeddine18@gmail.com</a></td></tr>
-      <tr><td>téléphone</td><td>+33 07 51 16 93 35</td></tr>
-      <tr><td>linkedin</td><td><a href="https://www.linkedin.com/in/bejaoui-saad-eddine-2ba628360" target="_blank">linkedin.com/in/bejaoui-saad-eddine-2ba628360</a></td></tr>
-      <tr><td>location</td><td>Paris, France</td></tr>
-      <tr><td>cv</td><td><a href="rapports/CV_Saadeddine_Bejaoui.pdf" download>Télécharger le CV (PDF) ↓</a></td></tr>
-    </table>
+      <article class="card" data-cat="finance">
+        <div class="meta"><span class="y">2026</span><span class="tag"><span class="fr">Finance quantitative</span><span class="en">Quantitative finance</span></span></div>
+        <h3><span class="fr">Calibration jointe SPX/VIX sous modèle quintic Ornstein–Uhlenbeck</span><span class="en">Joint SPX/VIX calibration under the quintic Ornstein–Uhlenbeck model</span></h3>
+        <p class="fr">Calibrer l'une des deux surfaces de volatilité est faisable ; calibrer les deux simultanément ne l'est pas, parce que la même dynamique doit expliquer à la fois les options sur l'indice et les options sur sa volatilité. Extraction de la variance forward, comparaison de trois paramétrisations, pricing par Monte Carlo. La partie instructive a été d'identifier quelle paramétrisation échoue aux maturités courtes, et pourquoi.</p>
+        <p class="en">Fitting either volatility surface alone is manageable; fitting both at once is not, because the same dynamics have to explain index options and options on its volatility simultaneously. Forward variance extraction, comparison of three parametrisations, Monte Carlo pricing. The instructive part was identifying which parametrisation fails at short maturities, and why.</p>
+        <div class="nums">
+          <span><b>7 249</b> <span class="fr">options SPX</span><span class="en">SPX options</span></span>
+          <span><b>195</b> <span class="fr">calls VIX OTM</span><span class="en">OTM VIX calls</span></span>
+          <span><b>65 740</b> <span class="fr">surfaces simulées</span><span class="en">simulated surfaces</span></span>
+          <span>R² <b>0,9997</b> <span class="fr">(réseau surrogate)</span><span class="en">(surrogate network)</span></span>
+          <span><b>0,19</b> <span class="fr">pt de vol d'erreur moyenne</span><span class="en">vol pt mean error</span></span>
+        </div>
+        <div class="links">
+          <a class="u" href="rapports/Rapport_QuinticOU.pdf"><span class="fr">Rapport</span><span class="en">Report</span> ↗</a>
+          <a class="u" href="rapports/Code_QuinticOU.ipynb"><span class="fr">Code</span><span class="en">Code</span> ↗</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="ml">
+        <div class="meta"><span class="y">2025 — 2026</span><span class="tag"><span class="fr">Machine learning</span><span class="en">Machine learning</span></span></div>
+        <h3><span class="fr">Apprentissage supervisé sur 630 000 observations : arbitrage précision / coût</span><span class="en">Supervised learning on 630,000 observations: accuracy versus cost</span></h3>
+        <p class="fr">Construction de variables puis comparaison de Ridge, forêts aléatoires, LightGBM et XGBoost, et d'un modèle empilé. Ce que j'en retiens n'est pas la performance mais la méthode : une variable n'est retenue que si son apport résiste au changement de modèle. L'arbitrage temps de calcul contre précision y est explicite — LightGBM atteint presque le même R² que XGBoost en près de 400 fois moins de temps.</p>
+        <p class="en">Feature construction, then a comparison of Ridge, random forests, LightGBM and XGBoost, plus a stacked model. What I take from it is not the performance but the method: a feature is kept only if its contribution survives a change of model. The compute-versus-accuracy trade-off is explicit — LightGBM reaches almost the same R² as XGBoost in roughly 400 times less time.</p>
+        <div class="nums">
+          <span><b>630 000</b> <span class="fr">observations</span><span class="en">observations</span></span>
+          <span>R² <b>0,785</b> <span class="fr">(empilé)</span><span class="en">(stacked)</span></span>
+          <span>LightGBM R² <b>0,778</b> <span class="fr">en 0,17 s</span><span class="en">in 0.17 s</span></span>
+          <span>XGBoost R² <b>0,784</b> <span class="fr">en 66 s</span><span class="en">in 66 s</span></span>
+        </div>
+        <div class="links">
+          <a class="u" href="rapports/Student_Test_Score.pdf"><span class="fr">Rapport</span><span class="en">Report</span> ↗</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="ml">
+        <div class="meta"><span class="y">2025 — 2026</span><span class="tag"><span class="fr">Optimisation numérique</span><span class="en">Numerical optimisation</span></span></div>
+        <h3><span class="fr">Optimisation numérique : éléments finis et structures de tenségrité</span><span class="en">Numerical optimisation: finite elements and tensegrity structures</span></h3>
+        <p class="fr">Sans contrainte : gradient à pas fixe, à pas optimal et conjugué, avec l'étude du conditionnement et de l'effet de la dimension. Sous contrainte : gradient projeté sur un problème d'obstacle, puis recherche de formes d'équilibre par minimisation d'énergie non convexe sur graphe orienté. La leçon n'est pas laquelle des méthodes gagne : c'est que la comparaison ne devient interprétable qu'une fois qu'on peut la relancer en ne changeant qu'une chose à la fois.</p>
+        <p class="en">Unconstrained: fixed-step, optimal-step and conjugate gradient, with a study of conditioning and of the effect of dimension. Constrained: projected gradient on an obstacle problem, then equilibrium shapes found by non-convex energy minimisation on a directed graph. The lesson is not which method wins: it is that the comparison only becomes meaningful once you can rerun it varying one thing at a time.</p>
+        <div class="nums">
+          <span><span class="fr">convergence en</span><span class="en">convergence in</span> <b>9</b> <span class="fr">itérations</span><span class="en">iterations</span></span>
+          <span><span class="fr">énergie non convexe</span><span class="en">non-convex energy</span></span>
+        </div>
+        <div class="links">
+          <a class="u" href="rapports/Optimisation2AMIndS.pdf"><span class="fr">Rapport</span><span class="en">Report</span> ↗</a>
+          <a class="u" href="rapports/CodeProjetOptimisation.ipynb"><span class="fr">Code</span><span class="en">Code</span> ↗</a>
+          <a class="u" href="rapports/Annexe_Code_Source.pdf"><span class="fr">Annexe code</span><span class="en">Code appendix</span> ↗</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="proba">
+        <div class="meta"><span class="y">2024 — 2025</span><span class="tag"><span class="fr">Statistique bayésienne</span><span class="en">Bayesian statistics</span></span></div>
+        <h3><span class="fr">Méthodes de Monte Carlo par chaînes de Markov (Metropolis–Hastings)</span><span class="en">Markov chain Monte Carlo methods (Metropolis–Hastings)</span></h3>
+        <p class="fr">Quatre applications d'un même algorithme : optimisation combinatoire, exploration stochastique, simulation thermodynamique par recuit simulé, et estimation bayésienne de paramètres de rendement. L'intérêt de les traiter ensemble est de voir qu'un même mécanisme d'acceptation sert des objectifs qui n'ont rien en commun, et que le diagnostic de convergence est ce qui change d'un cas à l'autre.</p>
+        <p class="en">Four applications of one algorithm: combinatorial optimisation, stochastic exploration, thermodynamic simulation by simulated annealing, and Bayesian estimation of return parameters. The point of treating them together is seeing that one acceptance mechanism serves goals with nothing in common, and that convergence diagnostics are what changes from case to case.</p>
+        <div class="nums">
+          <span><b>50 000</b> <span class="fr">itérations</span><span class="en">iterations</span></span>
+          <span><span class="fr">burn-in, intervalles à</span><span class="en">burn-in, intervals at</span> <b>95 %</b></span>
+        </div>
+        <div class="links">
+          <a class="u" href="rapports/Rapport_projet_probabilite.pdf"><span class="fr">Rapport</span><span class="en">Report</span> ↗</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="proba">
+        <div class="meta"><span class="y">2024 — 2025</span><span class="tag"><span class="fr">Probabilités</span><span class="en">Probability</span></span></div>
+        <h3><span class="fr">Aspects probabilistes des jeux de hasard : la ruine du joueur</span><span class="en">Probabilistic aspects of gambling: gambler's ruin</span></h3>
+        <p class="fr">Modélisation du processus de jeu par chaîne de Markov : probabilité d'atteindre un objectif selon le capital initial et le paramètre de gain. Comparaison de stratégies de mise, audacieuse contre prudente, puis inférence sur un paramètre inconnu à partir des seules observations de parties — c'est-à-dire estimer la règle du jeu sans qu'elle soit donnée.</p>
+        <p class="en">The betting process modelled as a Markov chain: probability of reaching a target given initial capital and the win parameter. Bold versus cautious staking strategies compared, then inference on an unknown parameter from observed plays alone — that is, estimating the rule of the game without being told it.</p>
+        <div class="links">
+          <a class="u" href="rapports/Probabilistic_aspects_of_gambling.pdf"><span class="fr">Rapport</span><span class="en">Report</span> ↗</a>
+        </div>
+      </article>
+
+      <article class="card" data-cat="signal">
+        <div class="meta"><span class="y">2024 — 2025</span><span class="tag"><span class="fr">Traitement du signal</span><span class="en">Signal processing</span></span></div>
+        <h3><span class="fr">Compression audio par codage en sous-bandes</span><span class="en">Audio compression by sub-band coding</span></h3>
+        <p class="fr">Chaîne complète d'analyse–synthèse : filtres RIF à phase linéaire, décimation, quantification multi-bandes, interpolation. Comparaison du rapport signal/bruit selon le nombre de bits alloués — le compromis débit contre qualité s'y lit directement.</p>
+        <p class="en">A full analysis–synthesis chain: linear-phase FIR filters, decimation, multi-band quantisation, interpolation. Signal-to-noise ratio compared across bit allocations — the rate-versus-quality trade-off reads directly off the results.</p>
+        <div class="links">
+          <a class="u" href="rapports/Projet_TNS.pdf"><span class="fr">Rapport</span><span class="en">Report</span> ↗</a>
+          <a class="u" href="rapports/Code_Projet_TNS.m"><span class="fr">Code MATLAB</span><span class="en">MATLAB code</span> ↗</a>
+        </div>
+      </article>
+
+    </div>
   </div>
-</div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head rv"><span class="num">04</span><h2>Contact</h2></div>
+    <div class="rv" style="margin-bottom:28px">
+      <p class="fr" style="font-family:var(--serif);font-size:1.15rem;font-style:italic;color:var(--ink)">Disponible pour un stage de fin d'études de six mois à partir du printemps 2027, sur un desk quantitatif — dérivés, volatilité, ou risque de marché et de contrepartie.</p>
+      <p class="en" style="font-family:var(--serif);font-size:1.15rem;font-style:italic;color:var(--ink)">Available for a six-month final-year internship from spring 2027, on a quantitative desk — derivatives, volatility, or market and counterparty risk.</p>
+    </div>
+    <div class="kv rv">
+      <div><div class="k">Email</div><div class="v"><a class="u" href="mailto:bejaouisaadeddine18@gmail.com">bejaouisaadeddine18@gmail.com</a></div></div>
+      <div><div class="k"><span class="fr">Téléphone</span><span class="en">Phone</span></div><div class="v"><a class="u" href="tel:+33758557686">+33 7 58 55 76 86</a></div></div>
+      <div><div class="k">LinkedIn</div><div class="v"><a class="u" href="https://www.linkedin.com/in/bejaoui-saad-eddine" target="_blank" rel="noopener">bejaoui-saad-eddine</a></div></div>
+      <div><div class="k"><span class="fr">Localisation</span><span class="en">Location</span></div><div class="v"><span class="fr">Région parisienne, France</span><span class="en">Paris area, France</span></div></div>
+    </div>
+  </div>
+</section>
+
+</main>
 
 <footer>
-  <div class="f-logo">SB</div>
-  <div class="f-copy">© 2026 <span>Saadeddine Bejaoui</span> — saadeddine-bejaoui.github.io</div>
+  <div class="wrap foot">
+    <span>© 2026 Saadeddine Bejaoui</span>
+    <span><a class="u" href="rapports/CV_Saadeddine_Bejaoui.pdf"><span class="fr">CV (PDF)</span><span class="en">CV (PDF)</span> ↓</a> · <a class="u" href="https://saadbejaoui.github.io">saadbejaoui.github.io</a></span>
+  </div>
 </footer>
 
 <script>
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 50);
-  let cur = '';
-  document.querySelectorAll('[id]').forEach(s => { if (window.scrollY >= s.offsetTop - 220) cur = s.id; });
-  document.querySelectorAll('.nav-links a').forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + cur));
-});
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-}, { threshold: .06 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-document.querySelectorAll('.f-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const f = btn.dataset.f;
-    document.querySelectorAll('.proj-card').forEach(c => c.classList.toggle('hidden', f !== 'all' && c.dataset.cat !== f));
+(function(){
+  'use strict';
+  var root = document.documentElement;
+
+  /* ── bascule de langue ── */
+  function setLang(l){
+    root.setAttribute('lang', l);
+    root.setAttribute('data-lang', l);
+    document.getElementById('fr').setAttribute('aria-pressed', l === 'fr');
+    document.getElementById('en').setAttribute('aria-pressed', l === 'en');
+    try{ localStorage.setItem('lang', l); }catch(e){}
+  }
+  document.getElementById('fr').addEventListener('click', function(){ setLang('fr'); });
+  document.getElementById('en').addEventListener('click', function(){ setLang('en'); });
+  try{
+    var sl = localStorage.getItem('lang');
+    if(sl === 'fr' || sl === 'en') setLang(sl);
+    else if((navigator.language || '').slice(0,2).toLowerCase() !== 'fr') setLang('en');
+  }catch(e){}
+
+  /* ── thème ── */
+  function setTheme(t){
+    if(t) root.setAttribute('data-theme', t); else root.removeAttribute('data-theme');
+    try{ t ? localStorage.setItem('theme', t) : localStorage.removeItem('theme'); }catch(e){}
+  }
+  try{
+    var st = localStorage.getItem('theme');
+    if(st === 'dark' || st === 'light') setTheme(st);
+  }catch(e){}
+  document.getElementById('theme').addEventListener('click', function(){
+    var cur = root.getAttribute('data-theme');
+    if(!cur){
+      var darkNow = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setTheme(darkNow ? 'light' : 'dark');
+    } else {
+      setTheme(cur === 'dark' ? 'light' : 'dark');
+    }
   });
-});
+
+  /* ── barre fixe ── */
+  var hdr = document.getElementById('hdr');
+  function onScroll(){ hdr.classList.toggle('pinned', window.scrollY > 10); }
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── révélation au scroll ── */
+  var rvs = document.querySelectorAll('.rv');
+  if(reduce || !('IntersectionObserver' in window)){
+    rvs.forEach(function(e){ e.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+    rvs.forEach(function(e){ io.observe(e); });
+  }
+
+  /* ── compteurs ── */
+  function fmt(v, dec){
+    if(dec) return v.toFixed(dec).replace('.', root.getAttribute('data-lang') === 'en' ? '.' : ',');
+    return Math.round(v).toLocaleString(root.getAttribute('data-lang') === 'en' ? 'en-US' : 'fr-FR');
+  }
+  function runCount(el){
+    var to  = parseFloat(el.getAttribute('data-to'));
+    var dec = parseInt(el.getAttribute('data-dec') || '0', 10);
+    var sfx = el.getAttribute('data-suffix') || '';
+    if(reduce){ el.textContent = fmt(to, dec) + sfx; return; }
+    var t0 = null, D = 1500;
+    function step(ts){
+      if(t0 === null) t0 = ts;
+      var p = Math.min((ts - t0) / D, 1);
+      var e = 1 - Math.pow(1 - p, 3);
+      el.textContent = fmt(to * e, dec) + sfx;
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var nums = document.querySelectorAll('.stat b[data-to]');
+  if(!('IntersectionObserver' in window)){
+    nums.forEach(runCount);
+  } else {
+    var io2 = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ runCount(en.target); io2.unobserve(en.target); }
+      });
+    }, {threshold:.5});
+    nums.forEach(function(e){ io2.observe(e); });
+  }
+
+  /* ── filtres de projets ── */
+  var btns  = document.querySelectorAll('.filters button');
+  var cards = document.querySelectorAll('#grid .card');
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){
+      var f = b.getAttribute('data-f');
+      btns.forEach(function(o){ o.setAttribute('aria-pressed', o === b); });
+      cards.forEach(function(c){
+        var keep = (f === 'all') || c.getAttribute('data-cat') === f;
+        if(reduce){ c.classList.toggle('hide', !keep); return; }
+        c.classList.add('fade');
+        setTimeout(function(){
+          c.classList.toggle('hide', !keep);
+          requestAnimationFrame(function(){ c.classList.remove('fade'); });
+        }, 180);
+      });
+    });
+  });
+})();
 </script>
 </body>
 </html>
